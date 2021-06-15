@@ -1,7 +1,6 @@
 const router = require('express').Router();
+const homeroutes = require('./homeroutes');
 
-router.get('/', async (req, res) => {
-    res.render('all');
-})
+router.use('/', homeroutes)
 
 module.exports = router;

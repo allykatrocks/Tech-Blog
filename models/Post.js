@@ -1,5 +1,5 @@
 const {Model, DataTypes} = require('sequelize');
-const sequelize = require('./config/config.js');
+const sequelize = require('../config/config');
 class Post extends Model {}
 
 Post.init({
@@ -24,6 +24,11 @@ Post.init({
             key: 'id'
         }
     }
+}, {
+    sequelize,
+    freezeTableName: true,
+    underscored: true,
+    modelName: "post",
 });
 
 module.exports = Post;

@@ -1,0 +1,12 @@
+<div>
+    <div id="dashboard-posts">
+        {{#each myposts as |post|}}
+        <div>{{post.title}}</div>
+         <div>by: {{post.user.username}}</div>
+            {{#each post.comments as |comment|}}
+            <div>{{comment.comment_text}}</div>
+            <div>by: {{comment.user.username}}</div>
+            {{/each}}
+        {{/each}}
+    </div>
+</div>

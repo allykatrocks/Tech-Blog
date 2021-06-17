@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {Post, Comment, User} = require('../models');
+const {Post, Comment, User} = require('../../models');
 const sequelize = require('../../config/config');
 const withAuth = require('../../utils/auth');
 
@@ -24,3 +24,4 @@ router.get('/', (req, res) => {
     });
 });
 
+module.exports = router;

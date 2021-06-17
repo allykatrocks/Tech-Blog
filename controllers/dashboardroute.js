@@ -1,7 +1,8 @@
 const router = require('express').Router();
 const {Post, Comment, User} = require('../models');
+const withAuth = require('../utils/auth')
 //this route is /dashboard/
-router.get('/', async (req, res) => {
+router.get('/', withAuth, async (req, res) => {
     try {
         const userposts = await Post.findAll({
             where: {
@@ -10,6 +11,7 @@ router.get('/', async (req, res) => {
             include: [{model: User, attributes: ['username']}, {model: Comment, include: [{model: User, attributes: ['username']}]}]
         })
         const myposts = userposts.map(post => post.get({plain: true}))
+        console.log(myposts, "line 14 --------------------------------------");
         res.render('dashboard', {myposts});
     }  catch(err) {
         res.status(500).json(err)

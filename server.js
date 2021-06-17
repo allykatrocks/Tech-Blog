@@ -21,6 +21,7 @@ const sesh = {
     })
   };
 
+app.use(session(sesh))
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');

@@ -1,5 +1,6 @@
 const router = require('express').Router();
-const {Post, Comment, User} = require('../models');
+const {Post, Comment, User} = require('../../models');
+const postroutes = require('./postroutes');
 
 //this route is /api/user/
 router.post('/', async (req, res) => {
@@ -25,12 +26,15 @@ router.post('/login', async (req, res) => {
         return;
     }
     const validPassword = await userData.checkPassword(req.body.password);
+    console.log("line 29")
     if (!validPassword) {
         res
         .status(400)
         .json({message: 'Incorrect password. Try again.'});
         return;
     }
+
+    console.log("line 36")
     req.session.save(() => {
         req.session.user_id = userData.id;
         req.session.logged_in = true;
@@ -41,3 +45,5 @@ router.post('/login', async (req, res) => {
     }
     
 })
+
+module.exports = router;

@@ -42,7 +42,7 @@ li {
 }
 
  nav a {
-    color: var(--color);
+    color: var(--dark);
     text-decoration: none;
 }
 

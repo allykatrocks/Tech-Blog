@@ -7,11 +7,11 @@ router.post('/', async (req, res) => {
     try {
     const userData = await User.create(req.body);
     
-    res.session.save(()=>{
+    req.session.save(()=>{
         req.session.user_id = userData.id;
         req.session.username = userData.username
         req.session.logged_in = true;
-        
+
         res.status(200).json(userData);
     })
     } catch (err) {
@@ -40,7 +40,7 @@ router.post('/login', async (req, res) => {
         return;
     }
 
-    console.log("line 36")
+    
     req.session.save(() => {
         req.session.user_id = userData.id;
         req.session.logged_in = true;
@@ -50,6 +50,16 @@ router.post('/login', async (req, res) => {
         res.status(400).json(err);
     }
     
+})
+
+router.post('/logout', async (req, res) => {
+    if(req.session.logged_in) {
+        req.session.destroy(() => {
+            res.status(204).end()
+        })
+    } else {
+        res.status(404).end()
+    }
 })
 
 module.exports = router;

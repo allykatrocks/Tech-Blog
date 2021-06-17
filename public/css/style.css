@@ -18,6 +18,41 @@ body {
   line-height: 1.5;
   font-size: 16px;
 }
+
+header {
+    padding: 20px;
+    background-color: #6f6866;
+    color: gray;
+}
+
+nav {
+    padding-top: 15px;
+    margin-right: 20px;
+    float: right;
+    font-size: 20px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+li {
+    display: inline-block;
+    margin-left: 25px;
+}
+
+ nav a {
+    color: var(--color);
+    text-decoration: none;
+}
+
+main {
+    margin: 15%;
+    margin-top: 35px;
+    width: 75%;
+    display: inline-block;
+}
+
 h1,
 h2,
 h3,
@@ -34,9 +69,6 @@ h2 a:visited {
 }
 h2 a {
   color: var(--primary);
-}
-header {
-  margin-top: 50px;
 }
 main {
   margin: 20px auto;
@@ -85,11 +117,7 @@ input {
 .li-inline {
   display: inline;
 }
-.navbar {
-  width: 100%;
-  position: fixed;
-  background-color: var(--dark);
-}
+
 .nav-item {
   margin: 0 40px;
 }

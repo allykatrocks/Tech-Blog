@@ -12,7 +12,11 @@ router.get('/', withAuth, async (req, res) => {
         })
         const myposts = userposts.map(post => post.get({plain: true}))
         console.log(myposts, "line 14 --------------------------------------");
-        res.render('dashboard', {myposts});
+        res.render("myposts", {
+            layout: "dashboard",
+            myposts
+          });
+  
     }  catch(err) {
         res.status(500).json(err)
     }

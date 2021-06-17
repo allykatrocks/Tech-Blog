@@ -28,7 +28,7 @@ app.set('view engine', 'handlebars');
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(require('./controllers/routes'));
+app.use(require('./controllers'));
 
 app.listen(PORT, () => {
     console.log('Server listening on  http://localhost:' + PORT);

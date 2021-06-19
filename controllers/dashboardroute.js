@@ -11,7 +11,6 @@ router.get('/', withAuth, async (req, res) => {
             include: [{model: User, attributes: ['username']}, {model: Comment, include: [{model: User, attributes: ['username']}]}]
         })
         const myposts = userposts.map(post => post.get({plain: true}))
-        console.log(myposts, "line 14 --------------------------------------");
         res.render("myposts", {
             layout: "dashboard",
             myposts
@@ -19,6 +18,18 @@ router.get('/', withAuth, async (req, res) => {
   
     }  catch(err) {
         res.status(500).json(err)
+    }
+})
+
+router.get('/edit/:id', withAuth, async (req, res) => {
+    try {
+        const postData = await Post.findOne(req.params.id)
+
+        if (postData) {
+            const post = postData.get({plain: true})
+            res.render()
+        }
+
     }
 })
 

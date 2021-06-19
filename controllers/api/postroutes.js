@@ -17,11 +17,25 @@ router.get('/', (req, res) => {
                     attributes: ['username']
                 }
             }]
-    }).then(dbPostData => res.json(dbPostData.reverse()))
+    }).then(dbPostData => {
+        console.log(dbPostData)
+        res.json(dbPostData.reverse())})
     .catch(err => {
         console.log(err);
         res.status(500).json(err);
     });
 });
+
+router.put('/:id', withAuth, async (req, res) => {
+    try {
+        const updatedPost = await Post.update(req.body, {where: {id: req.params.id}})
+
+        if (updatedPost) {
+            res.status(201).end()
+        } else {
+            res.status(404).end()
+        }
+    }
+})
 
 module.exports = router;

@@ -31,10 +31,22 @@ router.put('/:id', withAuth, async (req, res) => {
         const updatedPost = await Post.update(req.body, {where: {id: req.params.id}})
 
         if (updatedPost) {
+            console.log('successfully updated')
             res.status(201).end()
         } else {
             res.status(404).end()
         }
+    } catch (err) {
+        console.log('Failed to update personal post. Line 39')
+        res.status(500).json(err)
+    }
+})
+
+router.delete('/:id', withAuth, async (req, res) => {
+    try {
+        await Post.destroy({
+            where: {id: req.params.id}
+        })
     }
 })
 

@@ -11,6 +11,7 @@ router.get('/', withAuth, async (req, res) => {
             include: [{model: User, attributes: ['username']}, {model: Comment, include: [{model: User, attributes: ['username']}]}]
         })
         const myposts = userposts.map(post => post.get({plain: true}))
+        console.log(myposts)
         res.render("myposts", {
             layout: "dashboard",
             myposts
@@ -41,4 +42,9 @@ router.get('/edit/:id', withAuth, async (req, res) => {
     }
 })
 
+router.get('/new', async (req, res) => {
+    res.render('new-post', {
+        layout: 'dashboard'
+    })
+})
 module.exports = router;

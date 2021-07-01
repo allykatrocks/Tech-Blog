@@ -53,4 +53,20 @@ router.delete('/:id', withAuth, async (req, res) => {
     }
 })
 
+router.post('/', withAuth, async (req, res) => {
+    try {
+        const newPost = await Post.create({...req.body, user_id: req.session.user_id})
+
+        if (newPost) {
+            console.log('successfully created')
+            res.status(201).end()
+        } else {
+            res.status(404).end()
+        }
+    } catch (err) {
+        console.log('Failed to create personal post.')
+        res.status(500).json(err)
+    }
+})
+
 module.exports = router;

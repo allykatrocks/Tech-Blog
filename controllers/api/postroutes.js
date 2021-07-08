@@ -69,4 +69,20 @@ router.post('/', withAuth, async (req, res) => {
     }
 })
 
+router.get('/:id', async (req, res) => {
+    try {
+        const postData = await Post.findByPk(req.params.id, {include: [User, {model: Comment, include: [User]}]})
+        const post = postData.get({plain: true})
+        console.log('Here I am!', post)
+        if (postData) {
+        res.render('post', {post})
+        } else {
+            res.status(404).end()
+        }
+    } catch (err) {
+        console.log('Failed to retrieve post.')
+        res.status(404).json(err)
+    }
+})
+
 module.exports = router;

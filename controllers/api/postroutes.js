@@ -75,7 +75,7 @@ router.get('/:id', async (req, res) => {
         const post = postData.get({plain: true})
         console.log('Here I am!', post)
         if (postData) {
-        res.render('post', {post})
+        res.render('post', {post, loggedin: req.session.logged_in})
         } else {
             res.status(404).end()
         }

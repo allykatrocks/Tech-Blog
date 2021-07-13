@@ -5,12 +5,6 @@
 >
         <div>{{post.title}}</div>
          <div>by: {{post.user.username}}</div>
-            {{#each post.comments as |comment|}}
-            <div>{{comment.comment_text}}</div>
-            <div>by: {{comment.user.username}}</div>
-            <div><span>{{format_date createdAt}}</span>
-        </div>
-        {{/each}}
         </a>
         {{/each}}
     </div>

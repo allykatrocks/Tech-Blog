@@ -3,7 +3,7 @@ const {Post, Comment, User} = require('../../models');
 const sequelize = require('../../config/config');
 const withAuth = require('../../utils/auth');
 
-router.get('/', (req, res) => {
+router.get('/', withAuth, (req, res) => {
     Post.findAll({
         attributes: ['id', 'title', 'content', 'created_at'],
         include: [
@@ -69,7 +69,7 @@ router.post('/', withAuth, async (req, res) => {
     }
 })
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', withAuth, async (req, res) => {
     try {
         const postData = await Post.findByPk(req.params.id, {include: [User, {model: Comment, include: [User]}]})
         const post = postData.get({plain: true})
